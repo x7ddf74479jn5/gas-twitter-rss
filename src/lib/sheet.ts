@@ -1,25 +1,37 @@
-let ssCache: GoogleAppsScript.Spreadsheet.Spreadsheet;
+/**
+ * 検索ワードを取得
+ * @returns {string[]} 検索ワード
+ */
+export function getSearchWords(): string[] {
+  return getValuesFromSS(1);
+}
 
-export const getSpreadsheet = () => {
-  if (ssCache) return ssCache;
-  ssCache = SpreadsheetApp.getActiveSpreadsheet();
-  return ssCache;
-};
+/**
+ * 除外するユーザーIDを取得
+ * @returns {string[]} ユーザーID
+ */
+export function getIgnoreUsernames(): string[] {
+  return getValuesFromSS(2);
+}
 
-let sheetCache: GoogleAppsScript.Spreadsheet.Sheet;
+/**
+ * 除外するクライアントを取得
+ * @returns {string[]} ユーザーID
+ */
+export function getIgnoreClients(): string[] {
+  return getValuesFromSS(3);
+}
 
-export const getActiveSheet = () => {
-  if (sheetCache) return sheetCache;
-  sheetCache = getSpreadsheet().getActiveSheet();
-  if (!sheetCache) {
-    throw new Error("スプレッドシートのシートが見つかりませんでした。");
-  }
-  return sheetCache;
-};
+/**
+ * スプレッドシートから値を取得
+ * @param {number} col 列番号
+ * @returns {string[]} 範囲内の値
+ */
+export function getValuesFromSS(col: number): string[] {
+  const ss = SpreadsheetApp.getActiveSheet();
 
-export const getSheetData = (sheet: GoogleAppsScript.Spreadsheet.Sheet) => {
-  const sheetData = sheet.getDataRange().getValues() as string[][];
-  return sheetData;
-};
+  const lastRow = ss.getRange(1, col).getNextDataCell(SpreadsheetApp.Direction.DOWN).getRow() - 1;
 
-export const getEndRow = getActiveSheet().getLastRow() - 1;
+  const values = ss.getRange(2, col, lastRow).getValues();
+  return values.flat();
+}

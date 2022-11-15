@@ -8,13 +8,3 @@ export type TimeBasedEvent = {
 };
 
 type Minute = 1 | 5 | 10 | 15 | 30;
-
-type Frequency =
-  | {
-      type: "everyMinutes";
-      interval: Minute;
-    }
-  | {
-      type: "everyHours" | "everyDays";
-      interval: number;
-    };

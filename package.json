@@ -1,8 +1,7 @@
 {
-  "name": "gas-starter",
+  "name": "gas-twitter-rss",
   "version": "1.0.0",
-  "description": "GAS template with clasp and esbuild",
-  "main": "index.js",
+  "description": "スプレッドシートに追加した単語Twitterで定期検索してRSSで配信",
   "scripts": {
     "build": "pnpm tailwind && pnpm bundle",
     "bundle": "node build",
@@ -19,7 +18,7 @@
     "url": "https://github.com/x7ddf74479jn5"
   },
   "repository": {
-    "url": "https://github.com/x7ddf74479jn5/gas-starter"
+    "url": "https://github.com/x7ddf74479jn5/gas-twitter-rss"
   },
   "license": "MIT",
   "devDependencies": {
@@ -38,6 +37,7 @@
     "eslint-plugin-tailwindcss": "3.6.2",
     "prettier": "2.7.1",
     "tailwindcss": "3.2.3",
+    "twitter-api-v2": "1.12.9",
     "typescript": "4.8.4"
   }
 }

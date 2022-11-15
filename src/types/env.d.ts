@@ -6,7 +6,6 @@ declare global {
       [key: string]: string;
       // Define type for custom environmental variables here:
       // NODE_ENV: "development" | "production";
-      SLACK_WEBHOOK_URL: string;
     };
   };
 }
